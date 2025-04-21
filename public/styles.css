@@ -1,0 +1,168 @@
+html {
+    font-family: 'Montserrat';
+}
+
+.heading {
+    text-align: center;
+    font-size: 50px;
+    color: #417938;
+    padding-top: 20%;
+}
+
+body {
+    width: 100%;
+}
+
+/* AUTOSCROLL */
+
+.autoscroll {
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	align-items: center;
+    margin-left: -10px;
+    margin-top: 20px;
+}
+
+.autoscroll:before, .autoscroll:after {
+	content: "";
+	position: absolute;
+	height: 130px;
+	width: 150px;
+	z-index: 2;
+}
+
+.autoscroll:after {
+	right: 0;
+	top: 0;
+	transform: rotateZ(180deg);
+}
+
+.autoscroll:before {
+	left: 0;
+	top: 0;
+}
+
+.autoscroll .track {
+	display: flex;
+	width: calc(300px * 10);
+	animation: scroll 40s linear infinite;
+}
+
+.scrollimg {
+    width: 300px;
+    height: 300px;
+}
+
+
+@keyframes  scroll {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(calc(-300px * 10));
+	}
+}
+
+/* FLEXBOX STUFF */
+/* intro */
+.columns1 {
+    display: flex;
+}
+
+.left1 {
+    flex: 1 1 auto;
+}
+
+.right1 {
+    flex: 1 1 auto;
+    max-width: 100%;
+}
+
+.columns2 {
+    display: flex;
+}
+
+.scroll1, .scroll2, .scroll3, .scroll4, .scroll5 {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.scrollleft {
+    flex: 1 1 auto;
+}
+
+.scrollright {
+    flex: 1 1 auto;
+}
+
+track {
+    display: flex;
+}
+
+.right4 {
+    display: flex;
+    text-align: center;
+    width: 100vw;
+    margin: auto;
+}
+
+.columns4 {
+    text-align: center;
+}
+
+.reasons {
+    text-align:center;
+}
+
+.top, .bottom {
+    margin: 10px;
+    text-align:center;
+    width: 50%;
+    font-size: 20px;
+}
+
+.reasonssect {
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.footer {
+    background-color:black;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    margin: -20px;
+}
+
+@media (max-width: 1000px) {
+    .right1 {
+        visibility: hidden;
+        max-width: 0%;
+        max-height: 10px;
+    }
+
+    .columns1 {
+        display: block;
+    }
+
+    .left2 {
+        visibility: hidden;
+        max-width: 0%;
+        max-height: 10px;
+    }
+
+    .right2 {
+        margin-left: 35px;
+    }
+
+    .columns2 {
+        display: block;
+    }
+}
+
+@media (max-width: 1200px) {
+    #duck1 {
+        width: 100%;
+    }
+}
