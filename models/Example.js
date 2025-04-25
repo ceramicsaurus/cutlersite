@@ -4,7 +4,13 @@ import mongoose from "mongoose";
 const exampleSchema = new mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String },
-  createdAt: { type: Date, default: Date.now, },
+  year: { 
+    type: Number, 
+    default: new Date().getFullYear(),
+    min: 1900, 
+    max: new Date().getFullYear(), // Ensures it's not in the future
+    required: true 
+  },
   deleted: { type: Boolean, default: false, },
 });
 

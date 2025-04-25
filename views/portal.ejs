@@ -10,8 +10,11 @@
 <body>
     <h1>ADMIN PORTAL</h1>
     <p>Upload a file...</p>
-    <form action="/action_page.php">
-        <input class="file btn" type="file" id="myFile" name="filename">
+    <form action="/upload">
+        <label for="file-upload" class="custom-file-upload">
+            Upload a file
+        </label>
+        <input id="file-upload" type="file" />
         <br>
         <input class="submit btn" type="submit" value="Upload me!">
     </form>

@@ -1,168 +1,166 @@
-html {
+html, body {
     font-family: 'Montserrat';
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    min-height: 300vh;
+    transition: background 0.2s linear;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+    font-family: sans-serif;
+    color: white;
 }
 
 .heading {
     text-align: center;
     font-size: 50px;
-    color: #417938;
+    color: #e5e5e5;
     padding-top: 20%;
 }
 
-body {
-    margin-left: 20px;
+input[type="file"] {
+    display: none;
 }
 
-/* AUTOSCROLL */
-
-.autoscroll {
-	overflow: hidden;
-	position: relative;
-	display: flex;
-	align-items: center;
-    margin-left: -10px;
-    margin-top: 20px;
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    font-family: sans-serif;
 }
 
-.autoscroll:before, .autoscroll:after {
-	content: "";
-	position: absolute;
-	height: 130px;
-	width: 150px;
-	z-index: 2;
-}
-
-.autoscroll:after {
-	right: 0;
-	top: 0;
-	transform: rotateZ(180deg);
-}
-
-.autoscroll:before {
-	left: 0;
-	top: 0;
-}
-
-.autoscroll .track {
-	display: flex;
-	width: calc(300px * 10);
-	animation: scroll 40s linear infinite;
-}
-
-.scrollimg {
-    width: 300px;
-    height: 300px;
-}
-
-
-@keyframes  scroll {
-	from {
-		transform: translateX(0);
-	}
-	to {
-		transform: translateX(calc(-300px * 10));
-	}
-}
-
-/* FLEXBOX STUFF */
-/* intro */
-.columns1 {
+/* ARROW */
+.arrow-wrapper {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 50px; /* Adjust this based on your design */
+    width: 100%;
 }
 
-.left1 {
-    flex: 1 1 auto;
+/* Downward arrow container */
+.arrow-container {
+    font-size: 5rem; /* Size of the arrow */
+    color: white;
+    animation: bounce 1s ease-in-out 0s 4; /* Bounces twice */
+  }
+
+  /* Bounce animation */
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); } /* Moves arrow up */
+    100% { transform: translateY(0); }  /* Moves arrow back down */
 }
 
-.right1 {
-    flex: 1 1 auto;
-    max-width: 100%;
-}
-
-.columns2 {
-    display: flex;
-}
-
-.scroll1, .scroll2, .scroll3, .scroll4, .scroll5 {
-    display: flex;
-    flex: 1 1 auto;
-}
-
-.scrollleft {
-    flex: 1 1 auto;
-}
-
-.scrollright {
-    flex: 1 1 auto;
-}
-
-track {
-    display: flex;
-}
-
-.right4 {
-    display: flex;
+/* CONTENT + CAROUSEL */
+.year-section {
+    margin-top: 30%;
     text-align: center;
-    width: 100vw;
-    margin: auto;
-}
+    position: relative;
+  }
 
-.columns4 {
-    text-align: center;
-}
+  /* Styling for the year heading */
+  .year {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #333;
+  }
 
-.reasons {
-    text-align:center;
-}
+  /* Arrow container above the carousel */
+  .arrow-wrapper {
+    margin-top: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0; /* Place it at the top of the section */
+    width: 100%;
+  }
 
-.top, .bottom {
-    margin: 10px;
-    text-align:center;
-    width: 50%;
-    font-size: 20px;
-}
+  .arrow-container {
+    font-size: 3rem;
+    color: white;
+    animation: bounce 1s ease-in-out 0s 2; /* Bounces twice */
+  }
 
-.reasonssect {
-    text-align: center;
-    padding-bottom: 50px;
-}
+  /* Bounce animation */
+  @keyframes bounce {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
+  }
 
-.footer {
-    background-color:black;
+  /* Carousel container */
+  .carousel-container {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-top: 60px; /* Creates space for the arrow */
+  }
+
+  .carousel {
+    display: flex;
+    animation: scrollCarousel 20s linear infinite;
+  }
+
+  .carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .carousel img:hover {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+
+  .carousel-item {
+    position: relative;
+    width: 300px; /* Adjust based on your design */
+    height: 200px; /* Adjust based on your design */
+  }
+
+  .carousel-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
     color: white;
     display: flex;
-    justify-content: space-around;
-    margin: -20px;
-}
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
 
-@media (max-width: 1000px) {
-    .right1 {
-        visibility: hidden;
-        max-width: 0%;
-        max-height: 10px;
-    }
+  .carousel-item:hover .overlay {
+    opacity: 1;
+  }
 
-    .columns1 {
-        display: block;
-    }
+  .overlay .title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
 
-    .left2 {
-        visibility: hidden;
-        max-width: 0%;
-        max-height: 10px;
-    }
+  .overlay .description {
+    font-size: 1rem;
+  }
 
-    .right2 {
-        margin-left: 35px;
-    }
-
-    .columns2 {
-        display: block;
-    }
-}
-
-@media (max-width: 1200px) {
-    #duck1 {
-        width: 100%;
-    }
-}
+  /* Keyframe for auto scrolling carousel */
+  @keyframes scrollCarousel {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }

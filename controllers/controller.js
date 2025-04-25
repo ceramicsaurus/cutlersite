@@ -13,3 +13,25 @@ export const loadAdmin = async (req, res) => {
       res.status(500).send('Server Error');
   }
 }
+
+export const uploadFile = async (req, res) => {
+  try {
+    const { name, description, year } = req.body;
+    const image = req.file ? req.file.filename : null;
+
+    const newExample = new Example({ 
+      name, 
+      description, 
+      year, 
+      image 
+    });
+
+    await newExample.save();
+
+    req.flash('success', 'Example created successfully!');
+    res.redirect('/');
+  } catch (err) {
+    req.flash('error', 'Error creating example.');
+    res.redirect('/');
+  }
+};
