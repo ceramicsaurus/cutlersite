@@ -3,20 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research Project · Admin Portal</title>
+    <title>Project Archive · Admin Portal</title>
     <link rel="stylesheet" href="styles.css">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 </head>
 <body>
-    <h1>ADMIN PORTAL</h1>
-    <p>Upload a file...</p>
-    <form action="/upload">
-        <label for="file-upload" class="custom-file-upload">
-            Upload a file
-        </label>
-        <input id="file-upload" type="file" />
-        <br>
-        <input class="submit btn" type="submit" value="Upload me!">
-    </form>
+    <div class="portalbody">
+        <h1>ADMIN PORTAL</h1>
+            <form action="/upload">
+                <label for="file-upload" class="file-upload">
+                    Upload a file
+                </label>
+                <input id="file-upload" type="file" />
+            </form>
+    </div>
+    <!-- Modal Overlay -->
+    <div id="overlay"></div>
+
+    <!-- Modal -->
+    <div id="modal">
+        <h3>Enter Details</h3>
+        <input type="text" id="name" placeholder="Name (optional)">
+        <input type="text" id="description" placeholder="Description (optional)">
+        <input type="number" id="year" placeholder="Year (required)">
+        <button onclick="submitForm()">Submit</button>
+    </div>
+    <div class="table">
+        <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Year</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+          </table>
+    </div>
+<script src="portal.js"></script>
 </body>
 </html>

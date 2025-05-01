@@ -1,8 +1,14 @@
 import Example from "../models/Example.js";
 
+import { images } from '../server.js';
+
+export const indexController = (req, res) => {
+  res.render('index', { images });
+};
+
 // home page
 export const home = (req, res) => {
-  res.render("index");
+  res.render("index", {images});
 };
 
 // admin page
@@ -14,6 +20,7 @@ export const loadAdmin = async (req, res) => {
   }
 }
 
+// puts it into data
 export const uploadFile = async (req, res) => {
   try {
     const { name, description, year } = req.body;
@@ -35,3 +42,8 @@ export const uploadFile = async (req, res) => {
     res.redirect('/');
   }
 };
+
+// data to table
+const files = [
+  {}
+]
