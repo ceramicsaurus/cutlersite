@@ -1,38 +1,32 @@
-function openModal() {
-    document.getElementById('overlay').style.display = 'block';
-    document.getElementById('modal').style.display = 'block';
-  }
+const form = document.getElementById('dataForm');
+const tableBody = document.querySelector('#dataTable tbody');
 
-  function closeModal() {
-    document.getElementById('overlay').style.display = 'none';
-    document.getElementById('modal').style.display = 'none';
-    document.getElementById('fileInput').value = '';
-  }
+form.addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-  function submitForm() {
-    const name = document.getElementById('name').value.trim();
-    const description = document.getElementById('description').value.trim();
-    const year = document.getElementById('year').value.trim();
+    const formData = new FormData(form);
 
-    if (!year) {
-      alert("Year is required.");
-      return;
+    try {
+        const response = await fetch('/upload', {
+            method: 'POST',
+            body: formData,  // Let browser handle headers
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            addRowToTable(data);
+        } else {
+            alert('Error submitting data');
+        }
+    } catch (err) {
+        console.error('Fetch error:', err);
+        alert('Fetch failed');
     }
+});
 
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${name || '-'}</td>
-      <td>${description || '-'}</td>
-      <td>${year}</td>
-    `;
-    document.getElementById("tableBody").appendChild(row);
-    closeModal();
-
-    // Clear fields
-    document.getElementById('name').value = '';
-    document.getElementById('description').value = '';
-    document.getElementById('year').value = '';
-  }
-
-  // Close modal if clicking outside
-  document.getElementById('overlay').addEventListener('click', closeModal);
+function addRowToTable(data) {
+    const newRow = tableBody.insertRow();
+    newRow.insertCell(0).textContent = data.name;
+    newRow.insertCell(1).textContent = data.description;
+    newRow.insertCell(2).textContent = data.year;
+}

@@ -14,11 +14,12 @@ export const home = (req, res) => {
 // admin page
 export const loadAdmin = async (req, res) => {
   try {
-      res.render("portal");
+      const examples = await Example.find().lean();
+      res.render("portal", { examples });
   } catch (err) {
       res.status(500).send('Server Error');
   }
-}
+};
 
 // puts it into data
 export const uploadFile = async (req, res) => {
@@ -26,22 +27,23 @@ export const uploadFile = async (req, res) => {
     const { name, description, year } = req.body;
     const image = req.file ? req.file.filename : null;
 
-    const newExample = new Example({ 
-      name, 
-      description, 
-      year, 
-      image 
+    const newExample = new Example({
+      name,
+      description,
+      year,
+      image,
     });
 
     await newExample.save();
 
-    req.flash('success', 'Example created successfully!');
-    res.redirect('/');
+    // 👇 this tells the browser to reload the admin page after the POST
+    res.redirect('/upload');
   } catch (err) {
-    req.flash('error', 'Error creating example.');
-    res.redirect('/');
+    res.status(500).send('Error creating example.');
   }
 };
+
+
 
 // data to table
 const files = [

@@ -10,25 +10,19 @@
 <body>
     <div class="portalbody">
         <h1>ADMIN PORTAL</h1>
-            <form action="/upload">
+            <form id="dataForm" action="/upload" enctype="multipart/form-data">
                 <label for="file-upload" class="file-upload">
                     Upload a file
                 </label>
-                <input id="file-upload" type="file" />
+                <input id="file-upload" name="image" type="file">
+                <input type="text" id="title" name="name" placeholder="Title">
+                <input type="text" id="description" name="description" placeholder="Description">
+                <input type="number" id="year" name="year" placeholder="Year (required)">
+                <button onclick="submitForm()">Submit</button>
             </form>
     </div>
-    <!-- Modal Overlay -->
-    <div id="overlay"></div>
-
-    <!-- Modal -->
-    <div id="modal">
-        <h3>Enter Details</h3>
-        <input type="text" id="name" placeholder="Name (optional)">
-        <input type="text" id="description" placeholder="Description (optional)">
-        <input type="number" id="year" placeholder="Year (required)">
-        <button onclick="submitForm()">Submit</button>
-    </div>
-    <div class="table">
+    <h3>Archive</h3>
+    <div id="dataTable">
         <table>
             <thead>
               <tr>
@@ -37,8 +31,15 @@
                 <th>Year</th>
               </tr>
             </thead>
-            <tbody id="tableBody">
-            </tbody>
+            <tbody>
+                <% examples.forEach(example => { %>
+                    <tr>
+                        <td><%= example.name %></td>
+                        <td><%= example.description %></td>
+                        <td><%= example.year %></td>
+                    </tr>
+                <% }) %>
+            </tbody>            
           </table>
     </div>
 <script src="portal.js"></script>

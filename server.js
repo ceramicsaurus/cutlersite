@@ -54,7 +54,7 @@ console.log(images)
 // Route that renders the EJS page
 app.get('/', (req, res) => {
   res.render('index', { images });
-});
+});``
 // ADD NEW VERS JS
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

@@ -40,22 +40,23 @@ input[type="file"] {
     font-family: sans-serif;
 }
 
-/* ARROW */
-.arrow-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    bottom: 50px; /* Adjust this based on your design */
-    width: 100%;
-}
-
 /* Downward arrow container */
 .arrow-container {
     font-size: 5rem; /* Size of the arrow */
     color: white;
     animation: bounce 1s ease-in-out 0s 4; /* Bounces twice */
   }
+
+/* arrow */  
+.arrow-wrapper {
+  margin-top: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 100px;
+  width: 100%;
+}
 
   /* Bounce animation */
 @keyframes bounce {
@@ -78,28 +79,10 @@ input[type="file"] {
     color: #417938;
   }
 
-  /* Arrow container above the carousel */
-  .arrow-wrapper {
-    margin-top: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0; /* Place it at the top of the section */
-    width: 100%;
-  }
-
   .arrow-container {
     font-size: 3rem;
     color: white;
     animation: bounce 1s ease-in-out 0s 2; /* Bounces twice */
-  }
-
-  /* Bounce animation */
-  @keyframes bounce {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-    100% { transform: translateY(0); }
   }
 
   /* CAROUSEL */
@@ -108,38 +91,29 @@ input[type="file"] {
     width: 90%;
     margin: auto;
     overflow: hidden;
-  }
-  
-  .carousel {
     display: flex;
-    width: max-content;
     animation: scrollCarousel 20s linear infinite;
   }
   
-  @keyframes scrollCarousel {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-    transform: translateX(-50%);
-    }
-  }
-  
   .carousel-item {
-    flex: 0 0 auto; /* prevents stretching */
     width: 200px;
     height: 200px;
-    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .original-group, .duplicate-group {
+      display: flex;
   }
   
-  .carousel img {
-    width: 100%;
-    height: 100%;
+  .carousel-item img {
+    max-width: 100%;
+    max-height: 100%;
     object-fit: cover;
-    transition: all 0.3s ease-in-out;
   }
   
-  .carousel img:hover {
+  .carousel-item img:hover {
     opacity: 0.7;
     transform: scale(1.05);
   }
@@ -147,6 +121,8 @@ input[type="file"] {
 
   .carousel-track {
     display: flex;
+    animation: scrollCarousel 20s linear infinite;
+    width: calc(200px * [])
   }
 
   .overlay .title {
@@ -161,5 +137,5 @@ input[type="file"] {
   /* Keyframe for auto scrolling carousel */
   @keyframes scrollCarousel {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
+    100% { transform: translateX(-50%); }
   }
